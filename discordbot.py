@@ -4,6 +4,7 @@ import traceback
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
+player_list = []
 
 
 @bot.event
@@ -16,5 +17,11 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
+    
+@bot.command()
+async def add (ctx,*args):
+    player_list = list(args)
+    await ctx.send(player_list)
+    
     
 bot.run(token)
