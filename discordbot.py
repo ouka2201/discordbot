@@ -21,7 +21,7 @@ async def ping(ctx):
     await ctx.send('pong')
     
 @bot.command()
-async def add (ctx,*args):
+async def s (ctx,*args):
     player_list = list(args)
     random.shuffle(player_list)  
     n = math.ceil(len(player_list) / 2)
