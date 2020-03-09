@@ -21,8 +21,8 @@ async def ping(ctx):
 @bot.command()
 async def add (ctx,*args):
     player_list = list(args)
-    rplayer_list = random.sample(player_list,len(player_list))
-    await ctx.send(rplayer_list)
+    random.shuffle(player_list)
+    await ctx.send(player_list)
     
     
 bot.run(token)
