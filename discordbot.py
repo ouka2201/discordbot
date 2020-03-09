@@ -23,7 +23,13 @@ async def ping(ctx):
 async def add (ctx,*args):
     player_list = list(args)
     random.shuffle(player_list)  
-    await ctx.send("【BlueTeam】"+ str(player_list))
+    n = math.ceil(len(player_list) / 2)
+    date1 = player_list[:n]
+    date2 = player_list[n:]
+    bteam ='\n'.join(date1)
+    oteam ='\n'.join(date2)
+        
+    await ctx.send("【BlueTeam】"+ str(bteam)+ str(oteam))
     
     
 bot.run(token)
