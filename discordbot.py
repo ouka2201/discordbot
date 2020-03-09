@@ -21,7 +21,7 @@ async def ping(ctx):
 @bot.command()
 async def add (ctx,*args):
     player_list = list(args)
-    await ctx.send(player_list)
+    await ctx.send(player_list(1))
     
     
 bot.run(token)
