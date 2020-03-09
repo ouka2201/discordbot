@@ -18,19 +18,4 @@ async def on_command_error(ctx, error):
 async def ping(ctx):
     await ctx.send('pong')
     
-@bot.command()
-async def team(ctx, specified_num=2):
-    make_team = MakeTeam()
-    remainder_flag = 'true'
-    msg = make_team.make_party_num(ctx,specified_num,remainder_flag)
-    await ctx.channel.send(msg)
-# メンバー数が均等にはならないチーム分け
-@bot.command()
-async def team_norem(ctx, specified_num=2):
-    make_team = MakeTeam()
-    msg = make_team.make_party_num(ctx,specified_num)
-    await ctx.channel.send(msg)
-
-
-
 bot.run(token)
