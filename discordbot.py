@@ -30,7 +30,7 @@ async def add (ctx,*args):
     bteam ='\n'.join(date1)
     oteam ='\n'.join(date2)
         
-    await ctx.send("【BlueTeam】"+ str(bteam)+ str(oteam))
+    await ctx.send("【BlueTeam】\n"+ str(bteam)+ str(oteam))
     
     
 bot.run(token)
