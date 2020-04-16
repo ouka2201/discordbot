@@ -3,10 +3,21 @@ import os
 import traceback
 import random
 import math
+from asyncio import sleep
+import configparser
+import datetime
+import json
+import re
+import discord
+import time_checker
+
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
+CHANNEL = discord.Object(id=CHANNEL_ID)
+
+
 
 
 @bot.event
