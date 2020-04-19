@@ -29,7 +29,8 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send('pong')
+    embed = discord.Embed(title="Embedのタイトル",description="Embedの概要")
+    await ctx.send(embed=embed)
     
 @bot.command()
 async def s (ctx,*args):
