@@ -15,10 +15,6 @@ import time_checker
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
-CHANNEL = discord.Object(id=CHANNEL_ID)
-
-
-
 
 @bot.event
 async def on_command_error(ctx, error):
