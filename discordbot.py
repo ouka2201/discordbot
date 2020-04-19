@@ -39,10 +39,11 @@ async def s (ctx,*args):
     bteam ='\n'.join(date1)
     oteam ='\n'.join(date2)
     
-    keka = discord.Embed(title="チーム分けの結果ですぅ")
+    keka = discord.Embed(title="「チーム分けの結果ですぅ」")
     keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
     keka.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
     keka.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
+    keka.set_footer(text="「glhfですぅ」")
         
     await ctx.send(embed=keka)
     
