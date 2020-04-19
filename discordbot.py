@@ -25,7 +25,7 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def ping(ctx):
-    embed = discord.Embed(title="Embedのタイトル",description="Embedの概要")
+    embed = discord.Embed(description="おはようございますぅ")
     embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
     await ctx.send(embed=embed)
     
