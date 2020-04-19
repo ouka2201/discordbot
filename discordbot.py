@@ -41,8 +41,8 @@ async def s (ctx,*args):
     
     keka = discord.Embed(title="チーム分けの結果ですぅ")
     keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
-    embed.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
-    embed.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
+    keka.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
+    keka.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
         
     await ctx.send(embed=keka)
     
