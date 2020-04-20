@@ -24,7 +24,7 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def ping(ctx):
 	embed = discord.Embed(description="おはようございますぅ")
-	embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
+	embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
 	await ctx.send(embed=embed)
     
 @bot.command()
@@ -38,7 +38,7 @@ async def s (ctx,*args):
 	oteam ='\n'.join(date2)
 
 	keka = discord.Embed(title="「チーム分けの結果ですぅ」")
-	keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
+	keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
 	keka.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
 	keka.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
 	keka.set_footer(text="「glhfですぅ」")
@@ -52,9 +52,8 @@ async def p (ctx,*args):
 	pop.add_field(name="時間",value=time,inline=False)
 	pop.add_field(name="一匹め",value=name1,inline=False)
 	pop.add_field(name="二匹め",value=name2,inline=False)
-	channel = client.get_channel(CHANNEL_ID)
 	
-	await channel.send(embed=pop)
+	await ctx.send(embed=pop)
 	
 @tasks.loop(seconds=60)
 async def loop():
