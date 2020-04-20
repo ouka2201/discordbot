@@ -57,13 +57,10 @@ async def p (ctx,*args):
 	
 @bot.event
 async def regular_processing():
-    """
-    指定の時間にボスのpopを通知する
-    """
-    while True:
-        now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-	now.weekday()
-        name1,name2,time = nextpop(now.weekday(),now.Hour,now.Minute)
+	
+while True:
+	now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+	name1,name2,time = nextpop(now.weekday(),now.Hour,now.Minute)
 	
 	res1 = name1 + "が出現します！"
 	if name2 == "いないよ":
@@ -72,20 +69,19 @@ async def regular_processing():
 		res2 = name2 + "が出現します！"
 	res3 = time + "より" 
         if name1 is None:
-		
-        else:
-            try:
+	else:
+		try:
 		pop = discord.Embed(title="ワールドボス20分前通知")
 		pop.add_field(name=res3,inline=False)
 		pop.add_field(name=res1,inline=False)
 		pop.add_field(name=res2,inline=False)
 		await channel.send(embed=pop)
-            except AttributeError:
-                pass
-            except TimeoutError:
-                pass
+		except AttributeError:
+			pass
+		except TimeoutError:
+			pass
 
-        await sleep(60)
+		await sleep(60)
 	
 def nextpop(wday,hour,min):
 	df = pd.read_csv("pop.csv", index_col=0)
