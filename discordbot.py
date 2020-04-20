@@ -54,11 +54,13 @@ async def p (ctx,*args):
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	
 	await ctx.send(embed=pop)
-	
-@tasks.loop(seconds=60)
-async def loop():
+
+
+
+@client.event
+async def on_message_delete(message):
     channel = discord.utils.get(guild.text_channels, name="通知")
-    await channel.send('時間だよ')  
+    await channel.send(f"{message.author.name}さんのメッセージが削除されました:\n```\n{message.content}\n```")
 
 @bot.event
 async def regular_processing():
