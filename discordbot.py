@@ -10,7 +10,6 @@ import pandas as pd
 import discord
 
 client = discord.Client()
-channel = discord.TextChannel()
 CHANNEL_ID = 618007010071543809
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -58,7 +57,7 @@ async def p (ctx,*args):
 	
 @bot.command()
 async def t(ctx):
-	channel.name = "通知"
+	channel = client.get_channel(CHANNEL_ID)
 	await channel.send("!!!!!")
 
 @bot.event
