@@ -98,8 +98,5 @@ def nextpop(wday,hour,min):
 		name2 = df['name2'].values[0]
 		time = df['time'].values[0]
 		return name1,name2,time
-	
-#ループ処理実行
-loop.start()
 
 bot.run(token)
