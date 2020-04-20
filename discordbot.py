@@ -47,7 +47,7 @@ async def s (ctx,*args):
     
 @bot.command()
 async def p (ctx,*args):
-	name1,name2,time = nextpop(0,10,30)
+	name1,name2,time = nextpop(0,15,40)
 	pop = discord.Embed(title="pop")
 	pop.add_field(name="時間",value=time,inline=False)
 	pop.add_field(name="一匹め",value=name1,inline=False)
