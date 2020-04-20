@@ -53,13 +53,45 @@ async def p (ctx,*args):
 	pop.add_field(name="一匹め",value=name1,inline=False)
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	
-	await ctx.send(embed=pop)
+	await channel.send(embed=pop)
+	
+@bot.event
+async def regular_processing():
+    """
+    指定の時間にボスのpopを通知する
+    """
+    while True:
+        now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+	now.weekday()
+        name1,name2,time = nextpop(now.weekday(),now.Hour,now.Minute)
+	
+	res1 = name1 + "が出現します！"
+	if name2 == "いないよ":
+		res2 = "二匹目は存在しません!"
+	else:
+		res2 = name2 + "が出現します！"
+	res3 = time + "より" 
+        if name1 is None:
+		
+        else:
+            try:
+		pop = discord.Embed(title="ワールドボス20分前通知")
+		pop.add_field(name=res3,inline=False)
+		pop.add_field(name=res1,inline=False)
+		pop.add_field(name=res2,inline=False)
+		await channel.send(embed=pop)
+            except AttributeError:
+                pass
+            except TimeoutError:
+                pass
+
+        await sleep(60)
 	
 def nextpop(wday,hour,min):
 	df = pd.read_csv("pop.csv", index_col=0)
 	df.query('wday == @wday & hour == @hour & min == @min', inplace=True)
 	if df.empty:
-		return 0,0,0
+		return None,None,None
 	else:
 		name1 = df['name1'].values[0]
 		name2 = df['name2'].values[0]
