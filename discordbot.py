@@ -10,7 +10,7 @@ import pandas as pd
 import discord
 
 client = discord.Client()
-CHANNEL_ID = 618007010071543809
+CHANNEL_ID = 700209274546290689
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
@@ -53,6 +53,7 @@ async def p (ctx,*args):
 	pop.add_field(name="一匹め",value=name1,inline=False)
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	channel = client.get_channel(CHANNEL_ID)
+	
 	await channel.send(embed=pop)
 @bot.event
 async def regular_processing():
