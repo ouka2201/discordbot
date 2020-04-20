@@ -53,7 +53,7 @@ async def p (ctx,*args):
 	pop.add_field(name="一匹め",value=name1,inline=False)
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	
-	await bot.send_message(CHANNEL, embed=pop)
+	await CLIENT.send_message(CHANNEL, embed=pop)
 	
 @bot.event
 async def regular_processing():
