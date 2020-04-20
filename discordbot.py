@@ -53,9 +53,7 @@ async def p (ctx,*args):
 	pop.add_field(name="一匹め",value=name1,inline=False)
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	channel = client.get_channel(CHANNEL_ID)
-    	await channel.send(embed=pop)  
-	
-@tasks.loop(seconds=60)
+	await channel.send(embed=pop)
 @bot.event
 async def regular_processing():
 	while True:
