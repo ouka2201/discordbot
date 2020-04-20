@@ -10,7 +10,7 @@ import pandas as pd
 import discord
 
 client = discord.Client()
-CHANNEL_ID = discord.TextChannel(id=618007010071543809)
+CHANNEL_ID = 618007010071543809
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
