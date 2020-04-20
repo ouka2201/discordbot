@@ -10,6 +10,7 @@ import pandas as pd
 import discord
 
 client = discord.Client()
+channel = discord.utils.get(guild.text_channels, name="通知")
 CHANNEL_ID = 618007010071543809
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -54,13 +55,11 @@ async def p (ctx,*args):
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	
 	await ctx.send(embed=pop)
-
-
-
-@client.event
-async def on_message_delete(message):
+	
+@bot.command()
+async def t(ctx):
     channel = discord.utils.get(guild.text_channels, name="通知")
-    await channel.send(f"{message.author.name}さんのメッセージが削除されました:\n```\n{message.content}\n```")
+    await channel.send("!!!!!")
 
 @bot.event
 async def regular_processing():
