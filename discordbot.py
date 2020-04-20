@@ -49,9 +49,9 @@ async def s (ctx,*args):
 async def p (ctx,*args):
 	name1,name2,time = nextpop(0,10,40)
 	pop = discord.Embed(title="pop")
-	keka.add_field(name="時間",value=time,inline=False)
-	keka.add_field(name="一匹め",value=name1,inline=False)
-	keka.add_field(name="二匹め",value=name2,inline=False)
+	pop.add_field(name="時間",value=time,inline=False)
+	pop.add_field(name="一匹め",value=name1,inline=False)
+	pop.add_field(name="二匹め",value=name2,inline=False)
 	
 	await ctx.send(embed=keka)
 	
