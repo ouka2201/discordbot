@@ -4,25 +4,22 @@ import traceback
 import random
 import math
 from asyncio import sleep
-import configparser
 import datetime
-import json
-import re
+import csv
+import pandas as pd
 import discord
-import time_checker
 
-
+df = pd.read_csv(pop.csv", index_col=0)
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
 
 @bot.event
 async def on_command_error(ctx, error):
-    orig_error = getattr(error, "original", error)
-    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
-
-
+	orig_error = getattr(error, "original", error)
+	error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
+	await ctx.send(error_msg)
+								 
 @bot.command()
 async def ping(ctx):
     embed = discord.Embed(description="おはようございますぅ")
@@ -44,8 +41,15 @@ async def s (ctx,*args):
     keka.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
     keka.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
     keka.set_footer(text="「glhfですぅ」")
-        
+				 
     await ctx.send(embed=keka)
     
-    
+def nextpop(wday,hour,min):
+	df = pd.read_csv(pop.csv", index_col=0)
+	df.query('wday == @wday & hour == @hour % min == @min', inplace=True)
+	name1 = df['name1'].values[0]
+	name2 = df['name12'].values[0]
+	time = df['time'].values[0]
+
+	return name1,name2,time
 bot.run(token)
