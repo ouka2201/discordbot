@@ -1,4 +1,4 @@
-from discord.ext import commands
+from discord.ext import tasks,　commands
 import os
 import traceback
 import random
@@ -55,6 +55,12 @@ async def p (ctx,*args):
 	channel = client.get_channel(CHANNEL_ID)
 	
 	await channel.send(embed=pop)
+	
+@tasks.loop(seconds=60)
+async def loop():
+    channel = client.get_channel(CHANNEL_ID)
+    await channel.send('時間だよ')  
+
 @bot.event
 async def regular_processing():
 	while True:
@@ -91,5 +97,8 @@ def nextpop(wday,hour,min):
 		name2 = df['name2'].values[0]
 		time = df['time'].values[0]
 		return name1,name2,time
+	
+#ループ処理実行
+loop.start()
 
 bot.run(token)
