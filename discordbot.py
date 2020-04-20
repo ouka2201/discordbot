@@ -23,30 +23,30 @@ async def on_command_error(ctx, error):
 								 
 @bot.command()
 async def ping(ctx):
-    embed = discord.Embed(description="おはようございますぅ")
-    embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
-    await ctx.send(embed=embed)
+	embed = discord.Embed(description="おはようございますぅ")
+	embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
+	await ctx.send(embed=embed)
     
 @bot.command()
 async def s (ctx,*args):
-    player_list = list(args)
-    random.shuffle(player_list)  
-    n = math.ceil(len(player_list) / 2)
-    date1 = player_list[:n]
-    date2 = player_list[n:]
-    bteam ='\n'.join(date1)
-    oteam ='\n'.join(date2)
-    
-    keka = discord.Embed(title="「チーム分けの結果ですぅ」")
-    keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
-    keka.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
-    keka.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
-    keka.set_footer(text="「glhfですぅ」")
-				 
-    await ctx.send(embed=keka)
+	player_list = list(args)
+	random.shuffle(player_list)  
+	n = math.ceil(len(player_list) / 2)
+	date1 = player_list[:n]
+	date2 = player_list[n:]
+	bteam ='\n'.join(date1)
+	oteam ='\n'.join(date2)
+
+	keka = discord.Embed(title="「チーム分けの結果ですぅ」")
+	keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/embed/avatars/0.png")
+	keka.add_field(name="ブルーチームですぅ",value=bteam,inline=False)
+	keka.add_field(name="オレンジチームですぅ",value=oteam,inline=False)
+	keka.set_footer(text="「glhfですぅ」")
+
+	await ctx.send(embed=keka)
     
 def nextpop(wday,hour,min):
-	df = pd.read_csv(pop.csv", index_col=0)
+ 	df = pd.read_csv(pop.csv", index_col=0)
 	df.query('wday == @wday & hour == @hour % min == @min', inplace=True)
 	name1 = df['name1'].values[0]
 	name2 = df['name12'].values[0]
