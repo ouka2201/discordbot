@@ -58,7 +58,7 @@ async def p (ctx,*args):
 def nextpop(wday,hour,min):
 	df = pd.read_csv("pop.csv", index_col=0)
 	df.query('wday == @wday & hour == @hour & min == @min', inplace=True)
-	if hour == df['hour'] and min == df['min']:
+	if hour == df['hour'].values[0] and min == df['min'].values[0]:
 		name1 = df['name1'].values[0]
 		name2 = df['name2'].values[0]
 		time = df['time'].values[0]
