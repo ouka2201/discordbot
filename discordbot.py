@@ -57,7 +57,7 @@ async def p (ctx,*args):
 	
 @bot.command()
 async def t(ctx):
-	channel = client.get_channel(CHANNEL_ID)
+	channel.name = "通知"
 	await channel.send("!!!!!")
 
 @bot.event
