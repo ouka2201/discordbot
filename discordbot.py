@@ -47,7 +47,7 @@ async def s (ctx,*args):
     
 @bot.command()
 async def p (ctx,*args):
-	name1,name2,time = nextpop(0,15,40)
+	name1,name2,time = nextpop(0,15,50)
 	pop = discord.Embed(title="pop")
 	pop.add_field(name="時間",value=time,inline=False)
 	pop.add_field(name="一匹め",value=name1,inline=False)
@@ -61,7 +61,9 @@ def nextpop(wday,hour,min):
 	name1 = df['name1'].values[0]
 	name2 = df['name2'].values[0]
 	time = df['time'].values[0]
-
-	return name1,name2,time
+	if hour == df['hour'] and min == df['min']:
+		return name1,name2,time
+	else:
+		return 0,0,0
 
 bot.run(token)
