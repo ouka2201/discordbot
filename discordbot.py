@@ -57,7 +57,7 @@ async def p (ctx,*args):
 	
 @tasks.loop(seconds=60)
 async def loop():
-    channel = client.get_channel(CHANNEL_ID)
+    channel = discord.utils.get(guild.text_channels, name="通知")
     await channel.send('時間だよ')  
 
 @bot.event
