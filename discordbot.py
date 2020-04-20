@@ -9,7 +9,8 @@ import csv
 import pandas as pd
 import discord
 
-CHANNEL = discord.TextChannel(id=618007010071543809)
+client = discord.Client()
+CHANNEL_ID = discord.TextChannel(id=618007010071543809)
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
@@ -51,9 +52,10 @@ async def p (ctx,*args):
 	pop.add_field(name="時間",value=time,inline=False)
 	pop.add_field(name="一匹め",value=name1,inline=False)
 	pop.add_field(name="二匹め",value=name2,inline=False)
+	channel = client.get_channel(CHANNEL_ID)
+    	await channel.send(embed=pop)  
 	
-	await CHANNEL.send_message(CHANNEL, embed=pop)
-	
+@tasks.loop(seconds=60)
 @bot.event
 async def regular_processing():
 	while True:
