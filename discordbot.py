@@ -30,7 +30,6 @@ async def regular_processing():
 				else:
 					res2 = name2 + "が出現します！"
 					res3 = time + "より"
-					print(res3)
 					pop = discord.Embed(title="ワールドボス20分前通知")
 					pop.add_field(name="時間", value=res3, inline=False)
 					pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
