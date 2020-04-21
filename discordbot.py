@@ -8,10 +8,12 @@ import datetime
 import csv
 import pandas as pd
 import discord
+from googletrans import Translator
 
 bot = commands.Bot(command_prefix='-')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
+translator = Translator()
 
 @bot.event
 async def regular_processing():
@@ -108,7 +110,7 @@ async def trans(ctx, *, arg):
 	str = arg
 	detect = translator.detect(arg)
 	befor_lang = detect.lang
-    if befor_lang == 'ja':
+	if befor_lang == 'ja':
 		convert_string = translator.translate(str, src=befor_lang, dest='en')
 		embed = discord.Embed(title='「翻訳結果ですぅ」', color=0xff0000)
 		embed.set_author(name="雅/Mashas.", icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
