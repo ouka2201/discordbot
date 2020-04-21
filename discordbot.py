@@ -52,6 +52,7 @@ async def on_command_error(ctx, error):
 async def ping(ctx):
 	embed = discord.Embed(description="おはようございますぅ")
 	embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
+	
 	await ctx.send(embed=embed)
     
 @bot.command()
@@ -102,11 +103,40 @@ async def p (ctx,*args):
 	pop.add_field(name="二匹め",value=name2,inline=False)
 	
 	await ctx.send(embed=pop)
+@bot.command(name="t")
+async def trans(ctx, *, arg):
+	str = arg
+	detect = translator.detect(arg)
+	befor_lang = detect.lang
+    if befor_lang == 'ja':
+		convert_string = translator.translate(str, src=befor_lang, dest='en')
+		embed = discord.Embed(title='「翻訳結果ですぅ」', color=0xff0000)
+		embed.set_author(name="雅/Mashas.", icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
+		embed.add_field(name='Befor', value=str)
+		embed.add_field(name='After', value=convert_string.text, inline=False)
+		embed.set_footer(text="いかがですか？？？")
+		
+		await ctx.send(embed=embed)
+	else:
+		convert_string = translator.translate(str, src=befor_lang, dest='ja')
+		embed = discord.Embed(title='「翻訳結果ですぅ」', color=0xff0000)
+		embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
+		embed.add_field(name='Befor', value=str)
+		embed.add_field(name='After', value=convert_string.text, inline=False)
+		embed.set_footer(text="いかがですか？？？")
+		
+		await ctx.send(embed=embed)
+
+@bot.command(name="d")
+async def detectbot(ctx, *, arg):
+	detect = translator.detect(arg)
+	m = detect.lang + ' ですぅ'
+	embed = discord.Embed(title="「言語解析結果ですぅ」")
+	embed.set_author(name="雅/Mashas.", icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
+	embed.add_field(name="この言語はおそらく", value=m, inline=False)
+	embed.set_footer(text="いかがですか？？？")
 	
-@bot.command()
-async def t(ctx):
-	channel = bot.get_channel(CHANNEL_ID)
-	await channel.send("!!!!!")
+	await ctx.send(embed=embed)
 	
 def nextpop(wday,hour,min):
 	df = pd.read_csv("pop.csv", index_col=0)
