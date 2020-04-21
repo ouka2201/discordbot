@@ -26,23 +26,22 @@ async def regular_processing():
 		else:
 			try:
 				res1 = name1 + "が出現します！"
-			if name2 == "いないよ":
-				res2 = "二匹目は存在しません!"
-			else:
-				res2 = name2 + "が出現します！"
-				res3 = time + "より"
-				print(res3)
-				pop = discord.Embed(title="ワールドボス20分前通知")
-				pop.add_field(name="時間", value=res3, inline=False)
-				pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
-				pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
-				channel = bot.get_channel(CHANNEL_ID)
-				await channel.send(embed=pop)
+				if name2 == "いないよ":
+					res2 = "二匹目は存在しません!"
+				else:
+					res2 = name2 + "が出現します！"
+					res3 = time + "より"
+					print(res3)
+					pop = discord.Embed(title="ワールドボス20分前通知")
+					pop.add_field(name="時間", value=res3, inline=False)
+					pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
+					pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
+					channel = bot.get_channel(CHANNEL_ID)
+					await channel.send(embed=pop)
 			except AttributeError:
 				pass
 			except TimeoutError:
 				pass
-
 	await sleep(60)
 
 @bot.event
