@@ -23,7 +23,7 @@ async def regular_processing():
     while True:
         now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
         #name1, name2, time = nextpop(now.weekday(), now.hour, now.minute)
-		name1, name2, time = nextpop(1, 10, 40)
+	name1, name2, time = nextpop(1, 10, 40)
         print(name1 + name2 + time)
         if name1 is None:
             print("...")
