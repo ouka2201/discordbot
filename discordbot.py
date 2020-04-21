@@ -43,6 +43,7 @@ async def regular_processing():
 				pass
 		await sleep(60)
 
+		
 @bot.event
 async def on_command_error(ctx, error):
 	orig_error = getattr(error, "original", error)
