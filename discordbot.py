@@ -18,7 +18,8 @@ player_list = []
 async def regular_processing():
 	while True:
 		now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-		name1, name2, time = nextpop(now.weekday(), now.hour, now.minute)
+		#name1, name2, time = nextpop(now.weekday(), now.hour, now.minute)
+		name1, name2, time = nextpop(1, 10, 40)
 		if name1 is None:
 			print("...")
 		else:
@@ -28,13 +29,13 @@ async def regular_processing():
 					res2 = "二匹目は存在しません!"
 				else:
 					res2 = name2 + "が出現します！"
-					res3 = time + "より"
-					pop = discord.Embed(title="ワールドボス20分前通知")
-					pop.add_field(name="時間", value=res3, inline=False)
-					pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
-					pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
-					channel = bot.get_channel(CHANNEL_ID)
-					await channel.send(embed=pop)
+				res3 = time + "より"
+				pop = discord.Embed(title="ワールドボス20分前通知")
+				pop.add_field(name="時間", value=res3, inline=False)
+				pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
+				pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
+				channel = bot.get_channel(CHANNEL_ID)
+				await channel.send(embed=pop)
 			except AttributeError:
 				pass
 			except TimeoutError:
