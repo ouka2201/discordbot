@@ -140,6 +140,10 @@ async def detectbot(ctx, *, arg):
 	embed.set_footer(text="いかがですか？？？")
 	
 	await ctx.send(embed=embed)
+@bot.command(name="test")
+async def test(ctx):
+	japanese = translator.translate('おはようございます。')
+	await ctx.send(japanese)
 	
 def nextpop(wday,hour,min):
 	df = pd.read_csv("pop.csv", index_col=0)
