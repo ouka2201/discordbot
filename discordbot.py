@@ -16,6 +16,40 @@ token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
 
 @bot.event
+async def regular_processing():
+    """
+    指定の時間にボスのpopを通知する
+    """
+    while True:
+        now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+        #name1, name2, time = nextpop(now.weekday(), now.hour, now.minute)
+		name1, name2, time = nextpop(1, 10, 40)
+        print(name1 + name2 + time)
+        if name1 is None:
+            print("...")
+        else:
+            try:
+                res1 = name1 + "が出現します！"
+                if name2 == "いないよ":
+                    res2 = "二匹目は存在しません!"
+                else:
+                    res2 = name2 + "が出現します！"
+                res3 = time + "より"
+                print(res3)
+                pop = discord.Embed(title="ワールドボス20分前通知")
+                pop.add_field(name="時間", value=res3, inline=False)
+                pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
+                pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
+                channel = bot.get_channel(CHANNEL_ID)
+                await channel.send(embed=pop)
+            except AttributeError:
+                pass
+            except TimeoutError:
+                pass
+
+        await sleep(60)
+
+@bot.event
 async def on_command_error(ctx, error):
 	orig_error = getattr(error, "original", error)
 	error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
@@ -59,32 +93,6 @@ async def p (ctx,*args):
 async def t(ctx):
 	channel = client.get_channel(CHANNEL_ID)
 	await channel.send("!!!!!")
-
-@bot.event
-async def regular_processing():
-	while True:
-		now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-		name1,name2,time = nextpop(now.weekday(),now.Hour,now.Minute)
-		res1 = name1 + "が出現します！"
-		if name2 == "いないよ":
-			res2 = "二匹目は存在しません!"
-		else:
-			res2 = name2 + "が出現します！"
-		res3 = time + "より" 
-		if name1 is None:
-			print("...")
-		else:
-			try:
-				pop = discord.Embed(title="ワールドボス20分前通知")
-				pop.add_field(name=res3,inline=False)
-				pop.add_field(name=res1,inline=False)
-				pop.add_field(name=res2,inline=False)
-				await channel.send(embed=pop)
-			except AttributeError:
-				pass
-			except TimeoutError:
-				pass
-		await sleep(60)
 	
 def nextpop(wday,hour,min):
 	df = pd.read_csv("pop.csv", index_col=0)
@@ -96,5 +104,6 @@ def nextpop(wday,hour,min):
 		name2 = df['name2'].values[0]
 		time = df['time'].values[0]
 		return name1,name2,time
-
+	
+bot.loop.create_task(regular_processing())
 bot.run(token)
