@@ -40,7 +40,7 @@ async def regular_processing():
 				pass
 			except TimeoutError:
 				pass
-	await sleep(60)
+		await sleep(60)
 
 @bot.event
 async def on_command_error(ctx, error):
