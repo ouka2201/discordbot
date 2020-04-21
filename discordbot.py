@@ -9,7 +9,6 @@ import csv
 import pandas as pd
 import discord
 
-CHANNEL_ID = 618007010071543809
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
@@ -34,8 +33,10 @@ async def regular_processing():
 				pop.add_field(name="時間", value=res3, inline=False)
 				pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
 				pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
-				channel = bot.get_channel(CHANNEL_ID)
-				await channel.send(embed=pop)
+				ch_name = "通知"
+				for channel in bot.get_all_channels():
+					if channel.name == ch_name:
+						await channel.send(embed=pop)
 			except AttributeError:
 				pass
 			except TimeoutError:
