@@ -5,7 +5,6 @@ import random
 import math
 from asyncio import sleep
 import datetime
-import csv
 import pandas as pd
 import discord
 from googletrans import Translator
