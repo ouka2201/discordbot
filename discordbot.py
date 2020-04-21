@@ -9,7 +9,7 @@ import csv
 import pandas as pd
 import discord
 
-bot = commands.Bot(command_prefix='/')
+bot = commands.Bot(command_prefix='-')
 token = os.environ['DISCORD_BOT_TOKEN']
 player_list = []
 
@@ -72,7 +72,27 @@ async def s (ctx,*args):
 	keka.set_footer(text="「glhfですぅ」")
 
 	await ctx.send(embed=keka)
-    
+
+@bot.command(name="占い")
+async def uranai(ctx):
+	lucks = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
+	luck = random.choice(lucks)
+
+	# 運勢の内容で表示する文章を変える
+	if luck == "大吉" or luck == "中吉":
+		detail = "いい事あるといいですねぇ"
+	elif luck == "小吉" or luck == "吉":
+		detail = "中途半端ですねぇ"
+	else:
+		detail = "死んでください"
+
+	keka = discord.Embed(title="「今日の運勢ですぅ」")
+	keka.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
+	keka.add_field(name="占いの結果", value=luck, inline=False)
+	keka.set_footer(text=detail)
+
+	await ctx.send(embed=keka)
+
 @bot.command()
 async def p (ctx,*args):
 	now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
