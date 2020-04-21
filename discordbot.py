@@ -109,7 +109,7 @@ async def p (ctx,*args):
 @bot.command(name="t")
 async def trans(ctx, *, arg):
 	str = arg
-	detect = translator.detect(arg)
+	detect = translator.detect(str)
 	befor_lang = detect.lang
 	if befor_lang == 'ja':
 		convert_string = translator.translate(str, src=befor_lang, dest='en')
