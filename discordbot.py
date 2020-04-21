@@ -41,6 +41,7 @@ async def regular_processing():
 				pass
 			except TimeoutError:
 				pass
+			
 		await sleep(60)
 
 		
