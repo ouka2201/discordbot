@@ -11,8 +11,6 @@ import cogs.mashas as mashas
 token = os.environ['DISCORD_BOT_TOKEN']
 apikey = os.environ['ART_API_KEY']
 pyart = pya3rt.TalkClient(apikey)
-player_list = []
-translator = Translator()
 prefix = '-'
 
 class JapaneseHelpCommand(commands.DefaultHelpCommand):
