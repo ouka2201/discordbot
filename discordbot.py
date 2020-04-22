@@ -2,6 +2,9 @@ from discord.ext import tasks,commands
 import os
 import traceback
 from asyncio import sleep
+import random
+import math
+from googletrans import Translator
 import datetime
 import pandas as pd
 import discord
