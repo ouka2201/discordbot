@@ -93,4 +93,5 @@ class mashas(commands.Cog, name='便利系'):
         await ctx.send(embed=embed)
 
 def setup(bot):
+    print("起動")
     bot.add_cog(mashas(bot))
