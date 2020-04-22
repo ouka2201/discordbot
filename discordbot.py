@@ -8,9 +8,12 @@ import datetime
 import pandas as pd
 import discord
 from googletrans import Translator
+import pya3rt
 
 bot = commands.Bot(command_prefix='-')
 token = os.environ['DISCORD_BOT_TOKEN']
+apikey = os.environ['ART_API_KEY']
+pyart = pya3rt.TalkClient(apikey)
 player_list = []
 translator = Translator()
 
@@ -151,6 +154,20 @@ def nextpop(wday,hour,min):
 		name2 = df['name2'].values[0]
 		time = df['time'].values[0]
 		return name1,name2,time
-	
+
+@bot.event
+async def on_message(message):
+	ch_name = "会話用"
+	if message.channel.name == ch_name:
+		if message.author.bot:
+			return
+		if message.content.startswith('/'):
+			return
+		if message.content.startswith('-'):
+			return
+		else:
+			response = pyart.talk(message.content)
+			await message.channel.send(((response['results'])[0])['reply'])
+			
 bot.loop.create_task(regular_processing())
 bot.run(token)
