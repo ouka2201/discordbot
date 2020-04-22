@@ -4,7 +4,7 @@ import math
 from googletrans import Translator
 
 class mashas(commands.Cog, name='便利系'):
-    @bot.command()
+    @commands.command()
     async def ping(ctx):
         """まこんが挨拶するだけ"""
         embed = discord.Embed(description="おはようございますぅ")
@@ -12,7 +12,7 @@ class mashas(commands.Cog, name='便利系'):
 
         await ctx.send(embed=embed)
 
-    @bot.command()
+    @commands.command()
     async def s (ctx,*args):
         """空白入れながら名前書いてくと分けてくれる"""
         player_list = list(args)
@@ -31,7 +31,7 @@ class mashas(commands.Cog, name='便利系'):
 
         await ctx.send(embed=keka)
 
-    @bot.command(name="占い")
+    @commands.command(name="占い")
     async def uranai(ctx):
         """占うやつ"""
         lucks = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
@@ -52,7 +52,7 @@ class mashas(commands.Cog, name='便利系'):
 
         await ctx.send(embed=keka)
 
-    @bot.command(name="t")
+    @commands.command(name="t")
     async def trans(ctx, *, arg):
         """まこんが翻訳してくれる"""
         str = arg
@@ -77,7 +77,7 @@ class mashas(commands.Cog, name='便利系'):
 
             await ctx.send(embed=embed)
 
-    @bot.command(name="d")
+    @commands.command(name="d")
     async def detectbot(ctx, *, arg):
         """まこんが何語か解説してくれる"""
         detect = translator.detect(arg)
