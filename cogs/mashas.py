@@ -11,7 +11,7 @@ class mashas(commands.Cog, name='便利系'):
         super().__init__()
         self.bot = bot
         
-    @commands.command()
+    @commands.command(name="ping")
     async def ping(self, ctx):
         """まこんが挨拶するだけ"""
         embed = discord.Embed(description="おはようございますぅ")
@@ -19,7 +19,7 @@ class mashas(commands.Cog, name='便利系'):
 
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(name="s")
     async def s (self, ctx,*args):
         """空白入れながら名前書いてくと分けてくれる"""
         player_list = list(args)
@@ -84,8 +84,8 @@ class mashas(commands.Cog, name='便利系'):
 
             await ctx.send(embed=embed)
 
-    @commands.command(self, name="d")
-    async def detectbot(ctx, *, arg):
+    @commands.command(name="d")
+    async def detectbot(self, ctx, *, arg):
         """まこんが何語か解説してくれる"""
         detect = translator.detect(arg)
         m = detect.lang + ' ですぅ'
