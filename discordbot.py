@@ -168,6 +168,7 @@ async def on_message(message):
 		else:
 			response = pyart.talk(message.content)
 			await message.channel.send(((response['results'])[0])['reply'])
+	await bot.process_commands(message)
 			
 bot.loop.create_task(regular_processing())
 bot.run(token)
