@@ -3,6 +3,9 @@ import random
 import math
 from googletrans import Translator
 
+player_list = []
+translator = Translator()
+
 class mashas(commands.Cog, name='便利系'):
     @commands.command()
     async def ping(ctx):
