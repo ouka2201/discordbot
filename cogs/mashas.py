@@ -7,8 +7,12 @@ player_list = []
 translator = Translator()
 
 class mashas(commands.Cog, name='便利系'):
+    def __init__(self, bot):
+        super().__init__()
+        self.bot = bot
+        
     @commands.command()
-    async def ping(ctx):
+    async def ping(self, ctx):
         """まこんが挨拶するだけ"""
         embed = discord.Embed(description="おはようございますぅ")
         embed.set_author(name="雅/Mashas.",icon_url="https://cdn.discordapp.com/attachments/562098530366390275/701668974114504745/442d2198c53f8e1d.png")
@@ -16,7 +20,7 @@ class mashas(commands.Cog, name='便利系'):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def s (ctx,*args):
+    async def s (self, ctx,*args):
         """空白入れながら名前書いてくと分けてくれる"""
         player_list = list(args)
         random.shuffle(player_list)  
@@ -35,7 +39,7 @@ class mashas(commands.Cog, name='便利系'):
         await ctx.send(embed=keka)
 
     @commands.command(name="占い")
-    async def uranai(ctx):
+    async def uranai(self, ctx):
         """占うやつ"""
         lucks = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
         luck = random.choice(lucks)
@@ -56,7 +60,7 @@ class mashas(commands.Cog, name='便利系'):
         await ctx.send(embed=keka)
 
     @commands.command(name="t")
-    async def trans(ctx, *, arg):
+    async def trans(self, ctx, *, arg):
         """まこんが翻訳してくれる"""
         str = arg
         detect = translator.detect(str)
@@ -80,7 +84,7 @@ class mashas(commands.Cog, name='便利系'):
 
             await ctx.send(embed=embed)
 
-    @commands.command(name="d")
+    @commands.command(self, name="d")
     async def detectbot(ctx, *, arg):
         """まこんが何語か解説してくれる"""
         detect = translator.detect(arg)
