@@ -8,12 +8,11 @@ from googletrans import Translator
 import datetime
 import pandas as pd
 import discord
-import pya3rt
 import cogs.mashas as mashas
+import mkjson
 
 token = os.environ['DISCORD_BOT_TOKEN']
 apikey = os.environ['ART_API_KEY']
-pyart = pya3rt.TalkClient(apikey)
 prefix = '-'
 
 class JapaneseHelpCommand(commands.DefaultHelpCommand):
@@ -85,8 +84,11 @@ async def on_message(message):
 		if message.content.startswith('-'):
 			return
 		else:
-			response = pyart.talk(message.content)
-			await message.channel.send(((response['results'])[0])['reply'])
+			url = "https://www.chaplus.jp/v1/chat?apikey=" + apikey
+			headers = {'content-type': "application/json"}
+			response = requests.request("POST", url, data=mkjson.mkcplus(message.content, message.author.name), headers=headers)
+			res = json.loads(response.text)
+			await message.channel.send((res['bestResponse'])['utterance'])
 	await bot.process_commands(message)
 			
 bot.loop.create_task(regular_processing())
