@@ -1,5 +1,4 @@
 discord.py[voice]>=1.3.3 
 pandas==1.0.3
 googletrans==2.4.0
-pya3rt==1.1
 requests==2.23.0
