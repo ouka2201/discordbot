@@ -13,6 +13,7 @@ import requests
 import json
 import mkjson
 
+
 token = os.environ['DISCORD_BOT_TOKEN']
 apikey = os.environ['ART_API_KEY']
 prefix = '-'
