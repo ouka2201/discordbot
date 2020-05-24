@@ -34,47 +34,6 @@ async def on_ready():
 	print("on_ready")
 	print(discord.__version__)
 	mashas.setup(bot)
-
-@bot.event
-async def regular_processing():
-	while True:
-		now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-		name1, name2, time = nextpop(now.weekday(), now.hour, now.minute)
-		if name1 is None:
-			print("...")
-		else:
-			try:
-				res1 = name1 + "が出現します！"
-				if name2 == "いないよ":
-					res2 = "二匹目は存在しません!"
-				else:
-					res2 = name2 + "が出現します！"
-				res3 = time + "より"
-				pop = discord.Embed(title="ワールドボス20分前通知")
-				pop.add_field(name="時間", value=res3, inline=False)
-				pop.add_field(name="出現ワールドボス１", value=res1, inline=False)
-				pop.add_field(name="出現ワールドボス２", value=res2, inline=False)
-				ch_name = "通知"
-				for channel in bot.get_all_channels():
-					if channel.name == ch_name:
-						await channel.send(embed=pop)
-			except AttributeError:
-				pass
-			except TimeoutError:
-				pass
-			
-		await sleep(60)
-	
-def nextpop(wday,hour,min):
-	df = pd.read_csv("pop.csv", index_col=0)
-	df.query('wday == @wday & hour == @hour & min == @min', inplace=True)
-	if df.empty:
-		return None,None,None
-	else:
-		name1 = df['name1'].values[0]
-		name2 = df['name2'].values[0]
-		time = df['time'].values[0]
-		return name1,name2,time
 	
 @bot.event
 async def on_message(message):
