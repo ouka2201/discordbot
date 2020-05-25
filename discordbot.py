@@ -60,5 +60,50 @@ async def on_message(message):
 			res = json.loads(response.text)
 			await message.channel.send((res['bestResponse'])['utterance'])
 	await bot.process_commands(message)
-			
+	
+@bot.event
+async def on_message(message):
+	ch_name = "ききせん"
+	if message.channel.name == ch_name:
+		if message.content.startswith('/'):
+			pass
+		else:
+			if message.author.voice.self_mute:
+				if message.guild.voice_client:
+					print(message.author.name)
+					text = format_text(message.content)
+					txt = message.author.name + "のメッセージです。" + text
+					makemp3(txt)
+					source = discord.FFmpegPCMAudio("output.mp3")
+					message.guild.voice_client.play(source)
+				else:
+					pass
+	await bot.process_commands(message)
+	
+def makemp3(str):
+	# クライアントの作成
+	client = texttospeech.TextToSpeechClient()
+
+	# 引数のテキストをセット
+	synthesis_input = texttospeech.types.SynthesisInput(text=str)
+
+	# ボイスのリクエスト nameを書き換えれば他の音声に変更可能
+	voice = texttospeech.types.VoiceSelectionParams(
+		language_code='ja-JP',
+		name='ja-JP-Wavenet-A',
+		ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
+
+	# オーディオコンフィグ
+	audio_config = texttospeech.types.AudioConfig(
+		audio_encoding=texttospeech.enums.AudioEncoding.MP3,
+		speaking_rate=1.8)
+
+	# 色々まとめる
+	response = client.synthesize_speech(synthesis_input, voice, audio_config)
+
+	# バイナリ書き込み
+	with open('output.mp3', 'wb') as out:
+		out.write(response.audio_content)
+		print('Audio content written to file "output.mp3"')
+	
 bot.run(token)
