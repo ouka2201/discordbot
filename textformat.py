@@ -1,4 +1,5 @@
 import re
+import emoji
 
 def format_text(text):
     text = re.sub(r'https?://[\w/:%#\$&\?\(\)~\.=\+\-…]+', "", text)
