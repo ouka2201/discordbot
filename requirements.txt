@@ -3,3 +3,4 @@ pandas==1.0.3
 googletrans==2.4.0
 requests==2.23.0
 emoji==0.5.4
+google-cloud-texttospeech==1.0.1
