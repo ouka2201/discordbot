@@ -17,7 +17,7 @@ async def join(self, ctx):
   # voicechannelに接続
   await vc.connect()
 
-@bot.command(name="bye")
+@commands.command(name="bye")
 async def bye(self, ctx):
   """botが切断"""
   # 切断
