@@ -84,10 +84,13 @@ async def on_message(message):
 				if message.guild.voice_client:
 					print(message.author.name)
 					text = textformat.format_text(message.content)
-					txt = message.author.name + "のメッセージです。" + text
-					makemp3(txt)
-					source = discord.FFmpegPCMAudio("output.mp3")
-					message.guild.voice_client.play(source)
+					if text == "":
+						print(text)
+					else:
+						txt = message.author.name + "のメッセージです。" + text
+						makemp3(txt)
+						source = discord.FFmpegPCMAudio("output.mp3")
+						message.guild.voice_client.play(source)
 				else:
 					pass
 	await bot.process_commands(message)
