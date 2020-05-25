@@ -60,6 +60,18 @@ async def on_message(message):
 			res = json.loads(response.text)
 			await message.channel.send((res['bestResponse'])['utterance'])
 	await bot.process_commands(message)
+@bot.event
+async def on_voice_state_update(member, before, after):
+	if after.channel is None:
+		if len(before.channel.members) == 1:
+			await member.guild.voice_client.disconnect()
+
+	if after.self_mute:
+		# voicechannelを取得
+		vc = after.channel
+		print('------')
+		# voicechannelに接続
+		await vc.connect()
 	
 @bot.event
 async def on_message(message):
