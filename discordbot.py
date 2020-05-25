@@ -9,6 +9,7 @@ import datetime
 import pandas as pd
 import discord
 import cogs.mashas as mashas
+import cogs.audio as audio
 import requests
 import json
 import mkjson
@@ -35,6 +36,7 @@ async def on_ready():
 	print("on_ready")
 	print(discord.__version__)
 	mashas.setup(bot)
+	audio.setup(bot)
 	
 @bot.event
 async def on_message(message):
