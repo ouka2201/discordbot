@@ -12,6 +12,7 @@ import cogs.mashas as mashas
 import requests
 import json
 import mkjson
+import textformat
 
 
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -48,7 +49,11 @@ async def on_message(message):
 		else:
 			url = "https://www.chaplus.jp/v1/chat?apikey=" + apikey
 			headers = {'content-type': "application/json"}
-			response = requests.request("POST", url, data=mkjson.mkcplus(message.content, message.author.name), headers=headers)
+			text = textformat.format_text(message.content)
+			if text == "":
+				await message.channel.send("画像、絵文字やURLには反応できません;;")
+				return
+			response = requests.request("POST", url, data=mkjson.mkcplus(text, message.author.name), headers=headers)
 			res = json.loads(response.text)
 			await message.channel.send((res['bestResponse'])['utterance'])
 	await bot.process_commands(message)
