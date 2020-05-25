@@ -1,8 +1,5 @@
 from discord.ext import commands
 import discord
-import random
-import math
-from googletrans import Translator
 
 class audio(commands.Cog, name='読み上げ'):
   def __init__(self, bot):
