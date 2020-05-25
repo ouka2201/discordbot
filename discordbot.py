@@ -14,6 +14,7 @@ import requests
 import json
 import mkjson
 import textformat
+from google.cloud import texttospeech
 
 
 token = os.environ['DISCORD_BOT_TOKEN']
