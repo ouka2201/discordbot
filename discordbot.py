@@ -53,5 +53,4 @@ async def on_message(message):
 			await message.channel.send((res['bestResponse'])['utterance'])
 	await bot.process_commands(message)
 			
-bot.loop.create_task(regular_processing())
 bot.run(token)
