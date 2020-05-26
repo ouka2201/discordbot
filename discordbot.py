@@ -71,7 +71,7 @@ async def on_message(message):
 			if message.author.voice.self_mute:
 				if message.guild.voice_client:
 					print(message.author.name)
-					text = format_text(message.content)
+					text = textformat.format_text(message.content)
 					if text == "":
 						print("text")
 					else:
