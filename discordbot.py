@@ -45,6 +45,8 @@ async def on_ready():
 @bot.event
 async def on_message(message):
 	ch_name = "会話用"
+	ch_namek = "ききせん"
+
 	if message.channel.name == ch_name:
 		if message.author.bot:
 			return
@@ -62,7 +64,29 @@ async def on_message(message):
 			response = requests.request("POST", url, data=mkjson.mkcplus(text, message.author.name), headers=headers)
 			res = json.loads(response.text)
 			await message.channel.send((res['bestResponse'])['utterance'])
+	elif message.channel.name == ch_namek:
+		if message.content.startswith('/'):
+			pass
+		else:
+			if message.author.voice.self_mute:
+				if message.guild.voice_client:
+					print(message.author.name)
+					text = format_text(message.content)
+					if text == "":
+						print("text")
+					else:
+						if message.content.startswith('-e'):
+							txt = selectName(message.author.id) + "のメッセージです。" + text
+							makemp3e(txt)
+						else:
+							txt = selectName(message.author.id) + "のメッセージです。" + text
+							makemp3(txt, selectVoice(message.author.id))
+						source = discord.FFmpegPCMAudio("output.mp3")
+						message.guild.voice_client.play(source)
+			else:
+				pass
 	await bot.process_commands(message)
+
 @bot.event
 async def on_voice_state_update(member, before, after):
 	if after.channel is None:
@@ -75,32 +99,6 @@ async def on_voice_state_update(member, before, after):
 		print('------')
 		# voicechannelに接続
 		await vc.connect()
-	
-@bot.event
-async def on_message(message):
-	ch_name = "ききせん"
-	if message.channel.name == ch_name:
-		if message.content.startswith('/'):
-			pass
-		else:
-			if message.author.voice.self_mute:
-				if message.guild.voice_client:
-					print(message.author.name)
-					text = textformat.format_text(message.content)
-					if text == "":
-						print(text)
-					else:
-						if message.content.startswith('-e'):
-							txt = selectName(message.author.id) + "のメッセージです。" + text
-							makemp3e(txt)
-						else:
-							txt = selectName(message.author.id) + "のメッセージです。" + text
-							makemp3(txt, selectVoice(message.author.id))
-						source = discord.FFmpegPCMAudio("output.mp3")
-						message.guild.voice_client.play(source)
-				else:
-					pass
-	await bot.process_commands(message)
 	
 def makemp3(str, name):
 	# クライアントの作成
