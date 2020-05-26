@@ -15,6 +15,7 @@ def format_text(text):
     text = re.sub('ぇ', "え", text)
     text = re.sub('ぉ', "お", text)
     text = re.sub('ーー*', "ー", text)
+    text = re.sub('-e', "", text)
     text_without_emoji = ''.join(['' if c in emoji.UNICODE_EMOJI else c for c in text])
 
     return text_without_emoji
