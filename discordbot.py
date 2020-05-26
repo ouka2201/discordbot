@@ -78,7 +78,7 @@ async def on_message(message):
 						if message.content.startswith('-e'):
 							txt = selectName(message.author.id) + "のメッセージです。" + text
 							makemp3e(txt)
-						elif message.content.startswith('-c')
+						elif message.content.startswith('-c'):
 							txt = selectName(message.author.id) + "のメッセージです。" + text
 							makemp3c(txt)
 						else:
