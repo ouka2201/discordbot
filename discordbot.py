@@ -78,6 +78,9 @@ async def on_message(message):
 						if message.content.startswith('-e'):
 							txt = selectName(message.author.id) + "のメッセージです。" + text
 							makemp3e(txt)
+						elif message.content.startswith('-c')
+							txt = selectName(message.author.id) + "のメッセージです。" + text
+							makemp3c(txt)
 						else:
 							txt = selectName(message.author.id) + "のメッセージです。" + text
 							makemp3(txt, selectVoice(message.author.id))
@@ -137,6 +140,33 @@ def makemp3e(str):
 	voice = texttospeech.types.VoiceSelectionParams(
 		language_code='en-US',
 		name='en-US-Wavenet-A',
+		ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
+
+	# オーディオコンフィグ
+	audio_config = texttospeech.types.AudioConfig(
+		audio_encoding=texttospeech.enums.AudioEncoding.MP3,
+		speaking_rate=1.3
+		)
+
+	# 色々まとめる
+	response = client.synthesize_speech(synthesis_input, voice, audio_config)
+
+	# バイナリ書き込み
+	with open('output.mp3', 'wb') as out:
+		out.write(response.audio_content)
+		print('Audio content written to file "output.mp3"')
+		
+def makemp3c(str):
+	# クライアントの作成
+	client = texttospeech.TextToSpeechClient()
+
+	# 引数のテキストをセット
+	synthesis_input = texttospeech.types.SynthesisInput(text=str)
+
+	# ボイスのリクエスト nameを書き換えれば他の音声に変更可能
+	voice = texttospeech.types.VoiceSelectionParams(
+		language_code='cmn-CN',
+		name='cmn-CN-Wavenet-C',
 		ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
 
 	# オーディオコンフィグ
