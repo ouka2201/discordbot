@@ -83,8 +83,8 @@ async def on_message(message):
 							makemp3(txt, selectVoice(message.author.id))
 						source = discord.FFmpegPCMAudio("output.mp3")
 						message.guild.voice_client.play(source)
-			else:
-				pass
+				else:
+					pass
 	await bot.process_commands(message)
 
 @bot.event
